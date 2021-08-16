@@ -5,8 +5,8 @@ This addon automatically adds cursor pagination data to the `meta` object inside
 
 ```ts
 meta = {
-  canNext: boolean;
-  canPrevious: boolean;
+  canNext: true,
+  canPrevious: false,
 };
 ```
 
