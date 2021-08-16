@@ -3,7 +3,7 @@ ember-cloud-firestore-adapter-pagination
 
 This addon automatically adds cursor pagination data to the `meta` object inside the `DS.PromiseArray` object returned by `store.query`.
 
-```ts
+```javascript
 meta = {
   canNext: true,
   canPrevious: false,
