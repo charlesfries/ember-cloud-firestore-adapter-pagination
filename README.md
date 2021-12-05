@@ -57,10 +57,26 @@ import { inject as service } from '@ember/service';
 export default class ApplicationRoute extends Route {
   @service store;
 
-  model() {
+  queryParams = {
+    startAfter: { refreshModel: true },
+    endBefore: { refreshModel: true },
+  };
+
+  model({ startAfter, endBefore }) {
     return this.store.query('post', {
       filter: (ref) => {
-        return ref.limit(10);
+        const PAGE_SIZE = 10;
+
+        ref = ref.orderBy('createdAt', 'desc');
+
+        if (startAfter)
+          ref = ref.startAfter(startAfter);
+        else if (endBefore)
+          ref = ref.endBefore(endBefore).limitToLast(PAGE_SIZE);
+        if (!endBefore)
+          ref = ref.limit(PAGE_SIZE);
+
+        return ref;
       },
     });
   }
@@ -85,6 +101,29 @@ export default class ApplicationRoute extends Route {
   {{on "click" this.next}}>
   Next
 </button>
+```
+
+```javascript
+// app/controller/application.js
+
+import Controller from '@ember/controller';
+import { tracked } from '@glimmer/tracking';
+import { action } from '@ember/object';
+
+export default class ApplicationController extends Controller {
+  @tracked startAfter;
+  @tracked endBefore;
+
+  @action next() {
+    this.startAfter = this.model.lastObject.createdAt;
+    this.endBefore = undefined;
+  }
+
+  @action previous() {
+    this.startAfter = undefined;
+    this.endBefore = this.model.firstObject.createdAt;
+  }
+}
 ```
 
 
