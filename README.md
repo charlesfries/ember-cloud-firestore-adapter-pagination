@@ -20,7 +20,7 @@ Compatibility
 
 * Ember.js v3.20 or above
 * Ember CLI v3.20 or above
-* Node.js v10 or above
+* Node.js v12 or above
 
 
 Installation
@@ -34,7 +34,21 @@ ember install ember-cloud-firestore-adapter-pagination
 Usage
 ------------------------------------------------------------------------------
 
-[Longer description of how to use the addon in apps.]
+```javascript
+// app/adapters/application.js
+
+import CloudFirestoreAdapterPagination from 'ember-cloud-firestore-adapter-pagination/adapters/cloud-firestore-pagination';
+
+export default class ApplicationAdapter extends CloudFirestoreAdapterPagination {}
+```
+
+```javascript
+// app/serializers/application.js
+
+import CloudFirestoreSerializerPagination from 'ember-cloud-firestore-adapter-pagination/serializers/cloud-firestore-pagination';
+
+export default class ApplicationSerializer extends CloudFirestoreSerializerPagination {}
+```
 
 
 Contributing
