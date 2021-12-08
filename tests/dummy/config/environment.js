@@ -27,7 +27,7 @@ module.exports = function (environment) {
         apiKey: '<api_key>',
         authDomain: '<auth_domain>',
         databaseURL: '<database_url>',
-        projectId: '<project_id>',
+        projectId: 'abcd-1234',
         storageBucket: '<storage_bucket>',
         messagingSenderId: '<messaging_sender_id>',
       },

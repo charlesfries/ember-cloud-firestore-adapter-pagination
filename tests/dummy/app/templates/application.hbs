@@ -1,5 +1,37 @@
-{{page-title "Dummy"}}
+{{page-title "ember-cloud-firestore-adapter-pagination"}}
 
-<h2 id="title">Welcome to Ember</h2>
+<h2 id="title">ember-cloud-firestore-adapter-pagination</h2>
+
+<ol>
+  {{#each this.model as |post|}}
+    <li>
+      <strong>
+        {{post.title}}
+        &middot;
+        <i>
+          {{post.createdAt}}
+        </i>
+      </strong>
+      <br />
+      {{post.body}}
+    </li>
+  {{/each}}
+</ol>
+
+<button
+  type="button"
+  disabled={{not this.model.meta.canPrevious}}
+  {{on "click" this.previous}}
+>
+  Previous
+</button>
+
+<button
+  type="button"
+  disabled={{not this.model.meta.canNext}}
+  {{on "click" this.next}}
+>
+  Next
+</button>
 
 {{outlet}}

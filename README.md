@@ -91,20 +91,22 @@ export default class ApplicationRoute extends Route {
 {{/each}}
 
 <button
-  disabled={{not this.model.canPrevious}}
+  type="button"
+  disabled={{not this.model.meta.canPrevious}}
   {{on "click" this.previous}}>
   Previous
 </button>
 
 <button
-  disabled={{not this.model.canNext}}
+  type="button"
+  disabled={{not this.model.meta.canNext}}
   {{on "click" this.next}}>
   Next
 </button>
 ```
 
 ```javascript
-// app/controller/application.js
+// app/controllers/application.js
 
 import Controller from '@ember/controller';
 import { tracked } from '@glimmer/tracking';
